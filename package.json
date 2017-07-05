@@ -16,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/gregbacchus/supplier-lookup/issues"
   },
-  "homepage": "https://github.com/gregbacchus/supplier-lookup#readme"
+  "homepage": "https://github.com/gregbacchus/supplier-lookup#readme",
+  "devDependencies": {
+    "typescript": "^2.4.1"
+  },
+  "dependencies": {
+    "@types/node": "^8.0.7",
+    "@types/underscore": "^1.8.1",
+    "loose-json": "^1.1.2",
+    "underscore": "^1.8.3"
+  }
 }

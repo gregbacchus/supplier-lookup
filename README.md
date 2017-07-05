@@ -25,3 +25,30 @@ The requirement is to find the supplier name of that invoice by
 matching the given list of supplier names to the invoice.
 Although only a limited number of supplier names are given, make
 your solution scalable to hundreds of thousands of supplier names.
+
+## To Run
+
+Scripts below are run in the project folder.
+
+**NOTE** This was developed on Mac. Scripts haven't been tested on other platforms
+
+### Requirements
+
+* Node.JS 6 or greater
+
+### Setup
+
+Install required packages
+
+```bash
+npm install
+```
+
+### Build and Run
+
+As this is written in Typescript is requires the sourcecode to be build.
+This is done automatically in the `prestart` script. So to get it going, just:
+
+```bash
+npm start
+```
