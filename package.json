@@ -1,0 +1,20 @@
+{
+  "name": "supplier-lookup",
+  "version": "1.0.0",
+  "description": "## The Challenge",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "node node_modules/typescript/bin/tsc",
+    "start": "node index.js",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregbacchus/supplier-lookup.git"
+  },
+  "author": "Greg Bacchus <greg@bacchus.co.nz>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gregbacchus/supplier-lookup/issues"
+  },
+  "homepage": "https://github.com/gregbacchus/supplier-lookup#readme"
+}
