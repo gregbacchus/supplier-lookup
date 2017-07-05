@@ -30,13 +30,20 @@ export interface OcrWord {
 /**
  * Group of words
  */
-export interface OcrPhrase {
-  page: number;
-  line: number;
-  words: string[];
-  top: number;
-  left: number;
+export class OcrPhrase {
+  readonly words: string[] = [];
   right: number;
+
+  constructor(readonly page: number, readonly line: number, readonly top: number, readonly left: number) {
+  }
+
+  text() {
+    return this.words.join(' ');
+  }
+
+  toString() {
+    return `${this.page}:${this.line}:${this.left} ${this.text()}`
+  }
 }
 
 /**
@@ -110,19 +117,17 @@ export class OcrParser {
 
       if (!phrase) {
         // start new phrase if necessary
-        phrase = {
+        phrase = new OcrPhrase(
           page,
           line,
-          words: [word.word],
-          top: word.top,
-          left: word.left,
-          right: word.left + word.width
-        };
-      } else {
-        // extend existing phrase
-        phrase.words.push(word.word);
-        phrase.right = word.left + word.width;
+          word.top,
+          word.left,
+        );
       }
+
+      // extend existing phrase
+      phrase.words.push(word.word);
+      phrase.right = word.left + word.width;
     }
     // output the last phrase on the line
     if (phrase) {

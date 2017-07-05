@@ -56,9 +56,29 @@ npm start
 Giving output:
 
 ```
-Words loaded: 143, 165ms
-Phrases computed: 69, 4ms
-Supplier name by position: Demo Company, 0ms
+Words loaded: 143, 130ms
+Phrases computed: 69, 5ms
+Supplier by position: 1:4:4.04 Demo Company, 1ms
 Suppliers loaded: 92, 2ms
-Validated supplier name: Demo Company, 2ms
+Validated supplier: 1:4:4.04 Demo Company, 2ms
 ```
+
+## Notes
+
+Parsers for the non-standard file formats are included. They
+are fairly basic and I'm sure there is room for improvement.
+
+When parsing the input OCR file, the first pass is simply parsing
+the JSON-like file format into objects representing each word. Then 
+there is a second pass that groups consecutive words into "phrases".
+
+There are two methods of getting out the supplier name
+
+1. simply looking at a line number and getting the nearest phrase to a position
+2. starting at a position (top and left coordinates) and working from 
+the nearest to farthest field check them against a validator function.
+The first valid phrase is returned.
+
+As it only has to deal with hundreds of thousands of suppliers,
+and that can easily be loaded into memory, I have done a fairly 
+crude map lookup to validating the supplier name.

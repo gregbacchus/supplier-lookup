@@ -21,20 +21,24 @@ async function processFiles() {
 
   start = Date.now();
   const document = Document.from(phrases);
-  const supplierName1 = document.getFieldByLine(1, 4, 5);
-  console.log(`Supplier name by position: ${supplierName1}, ${Date.now() - start}ms`);
+  const supplier1 = document.getFieldByLine(1, 4, 5);
+  console.log(`Supplier by position: ${supplier1}, ${Date.now() - start}ms`);
 
   start = Date.now();
-  const suppliers = await SupplierParser.parseFile(supplierStream);
-  // const suppliers = SupplierParser.generate(100000);
+  let suppliers = await SupplierParser.parseFile(supplierStream);
   console.log(`Suppliers loaded: ${suppliers.length}, ${Date.now() - start}ms`);
+
+  // start = Date.now();
+  // const fakerSupplierCount = 100000;
+  // suppliers = suppliers.concat(SupplierParser.generate(fakerSupplierCount));
+  // console.log(`Added lots more fake suppliers: ${fakerSupplierCount}, ${Date.now() - start}ms`);
 
   start = Date.now();
   const map = _.indexBy(suppliers, supplier => supplier.name.toLowerCase());
-  const supplierName2 = document.getField(1, 0, 0, candidate =>
-    map.hasOwnProperty(candidate.words.join(' ').toLowerCase())
+  const supplier2 = document.getField(1, 0, 0, candidate =>
+    map.hasOwnProperty(candidate.text().toLowerCase())
   );
-  console.log(`Validated supplier name: ${supplierName2}, ${Date.now() - start}ms`);
+  console.log(`Validated supplier: ${supplier2}, ${Date.now() - start}ms`);
 }
 
 processFiles().catch(console.error);

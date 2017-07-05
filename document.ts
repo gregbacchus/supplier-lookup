@@ -19,30 +19,30 @@ export class Document {
   /**
    * Get the nearest phrase if the line number is known
    */
-  getFieldByLine(page: number, line: number, left: number): string | null {
+  getFieldByLine(page: number, line: number, left: number): OcrPhrase | null {
     const phrasesOnLine = _.filter(this.phrases,
       phrase => phrase.page === page && phrase.line === line);
 
     if (!phrasesOnLine.length) return null;
 
     phrasesOnLine.sort((a, b) => Document.distance(a, a.top, left) - Document.distance(b, b.top, left));
-    return phrasesOnLine[0].words.join(' ');
+    return phrasesOnLine[0];
   }
 
   /**
    * Get the nearest phrase to given location
    */
-  getField(page: number, top: number, left: number, validator?: (OcrPhrase) => boolean): string | null {
+  getField(page: number, top: number, left: number, validator?: (OcrPhrase) => boolean): OcrPhrase | null {
     const phrasesOnPage = _.filter(this.phrases,
       phrase => phrase.page === page);
 
     if (!phrasesOnPage.length) return null;
 
     phrasesOnPage.sort((a, b) => Document.distance(a, top, left) - Document.distance(b, top, left));
-    if (!validator) return phrasesOnPage[0].words.join(' ');
+    if (!validator) return phrasesOnPage[0];
 
     for (const candidate of phrasesOnPage) {
-      if (validator(candidate)) return candidate.words.join(' ');
+      if (validator(candidate)) return candidate;
     }
     return null;
   }
