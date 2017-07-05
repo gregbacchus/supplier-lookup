@@ -23,6 +23,7 @@
   "dependencies": {
     "@types/node": "^8.0.7",
     "@types/underscore": "^1.8.1",
+    "faker": "^4.1.0",
     "loose-json": "^1.1.2",
     "underscore": "^1.8.3"
   }

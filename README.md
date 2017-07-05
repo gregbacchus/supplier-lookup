@@ -52,3 +52,13 @@ This is done automatically in the `prestart` script. So to get it going, just:
 ```bash
 npm start
 ```
+
+Giving output:
+
+```
+Words loaded: 143, 165ms
+Phrases computed: 69, 4ms
+Supplier name by position: Demo Company, 0ms
+Suppliers loaded: 92, 2ms
+Validated supplier name: Demo Company, 2ms
+```

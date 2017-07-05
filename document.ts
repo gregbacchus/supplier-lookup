@@ -32,13 +32,18 @@ export class Document {
   /**
    * Get the nearest phrase to given location
    */
-  getField(page: number, top: number, left: number): string | null {
-    const phrasesOnLine = _.filter(this.phrases,
+  getField(page: number, top: number, left: number, validator?: (OcrPhrase) => boolean): string | null {
+    const phrasesOnPage = _.filter(this.phrases,
       phrase => phrase.page === page);
 
-    if (!phrasesOnLine.length) return null;
+    if (!phrasesOnPage.length) return null;
 
-    phrasesOnLine.sort((a, b) => Document.distance(a, top, left) - Document.distance(b, top, left));
-    return phrasesOnLine[0].words.join(' ');
+    phrasesOnPage.sort((a, b) => Document.distance(a, top, left) - Document.distance(b, top, left));
+    if (!validator) return phrasesOnPage[0].words.join(' ');
+
+    for (const candidate of phrasesOnPage) {
+      if (validator(candidate)) return candidate.words.join(' ');
+    }
+    return null;
   }
 }
