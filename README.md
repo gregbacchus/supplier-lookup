@@ -56,11 +56,18 @@ npm start
 Giving output:
 
 ```
-Words loaded: 143, 130ms
-Phrases computed: 69, 5ms
-Supplier by position: 1:4:4.04 Demo Company, 1ms
-Suppliers loaded: 92, 2ms
-Validated supplier: 1:4:4.04 Demo Company, 2ms
+Suppliers loaded: 92, 76ms
+# Simple method
+Words loaded: 143, 91ms
+Phrases computed: 69, 3ms
+Found at line: 4, left: 4.04
+Supplier name: Demo Company, 1ms
+# Verified supplier method
+Words loaded: 143, 80ms
+Phrases computed: 69, 0ms
+Found at line: 4, left: 4.04
+Supplier name: Demo Company, 2ms
+. done
 ```
 
 ## Notes
